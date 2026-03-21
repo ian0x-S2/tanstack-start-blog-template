@@ -1,0 +1,23 @@
+{
+  "projectName": "blog-template",
+  "mode": "file-router",
+  "typescript": true,
+  "tailwind": true,
+  "packageManager": "bun",
+  "git": true,
+  "install": true,
+  "addOnOptions": {},
+  "includeExamples": true,
+  "envVarValues": {},
+  "routerOnly": false,
+  "version": 1,
+  "framework": "react",
+  "chosenAddOns": [
+    "cloudflare",
+    "tanstack-query",
+    "mcp",
+    "paraglide",
+    "compiler",
+    "biome"
+  ]
+}
