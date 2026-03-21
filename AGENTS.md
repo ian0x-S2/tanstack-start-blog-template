@@ -284,21 +284,21 @@ Inspired by [Linear](https://linear.app) — minimal, neutral, precise. No decor
 
 Always use these tokens. Never hardcode colors.
 
-| Token | Purpose |
-|---|---|
-| `--bg` | Page background |
-| `--bg-subtle` | Alternate section background |
-| `--surface` | Card / input fill |
-| `--surface-hover` | Hover state fill |
-| `--line` | Default border / divider |
-| `--line-strong` | Emphasized border |
-| `--ink` | Primary text |
-| `--ink-2` | Secondary text |
-| `--ink-3` | Tertiary / placeholder text |
-| `--violet` | Accent — links, active, primary CTA |
-| `--violet-subtle` | Accent background (tags, badges) |
-| `--violet-border` | Accent border |
-| `--header-bg` | Navbar background (with opacity) |
+| Token             | Purpose                             |
+| ----------------- | ----------------------------------- |
+| `--bg`            | Page background                     |
+| `--bg-subtle`     | Alternate section background        |
+| `--surface`       | Card / input fill                   |
+| `--surface-hover` | Hover state fill                    |
+| `--line`          | Default border / divider            |
+| `--line-strong`   | Emphasized border                   |
+| `--ink`           | Primary text                        |
+| `--ink-2`         | Secondary text                      |
+| `--ink-3`         | Tertiary / placeholder text         |
+| `--violet`        | Accent — links, active, primary CTA |
+| `--violet-subtle` | Accent background (tags, badges)    |
+| `--violet-border` | Accent border                       |
+| `--header-bg`     | Navbar background (with opacity)    |
 
 ### Dark / Light Mode
 
@@ -352,7 +352,7 @@ Always use these tokens. Never hardcode colors.
 
 ```tsx
 // Use .nav-link CSS class; add is-active for current route
-<Link className="nav-link" activeProps={{ className: 'nav-link is-active' }}>
+<Link className="nav-link" activeProps={{ className: "nav-link is-active" }}>
   Page
 </Link>
 ```
@@ -361,17 +361,17 @@ Always use these tokens. Never hardcode colors.
 
 - Max content width: `960px` via `.page-wrap`
 - Page padding: `px-4 pb-24 pt-14`
-- Section separator: `<div className="my-10 h-px bg-[var(--line)]" />`
+- Section separator: `<div className="my-10 h-px bg-(--line)" />`
 - Prose max-width: `max-w-[720px]`
 
 ### Spacing & Radius Reference
 
-| Use case | Radius |
-|---|---|
-| Control (button, input, locale chip) | `rounded-md` = 6px |
-| Card / panel | `rounded-xl` = 12px |
-| Icon-only button | `rounded-md` |
-| Tag pill | `rounded` = 4px |
+| Use case                             | Radius              |
+| ------------------------------------ | ------------------- |
+| Control (button, input, locale chip) | `rounded-md` = 6px  |
+| Card / panel                         | `rounded-xl` = 12px |
+| Icon-only button                     | `rounded-md`        |
+| Tag pill                             | `rounded` = 4px     |
 
 ### What to Avoid
 

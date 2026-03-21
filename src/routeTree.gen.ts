@@ -9,14 +9,24 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as RssDotxmlRouteImport } from './routes/rss[.]xml'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
-import { Route as SitemapXmlRouteImport } from './routes/sitemap.xml'
-import { Route as RssXmlRouteImport } from './routes/rss.xml'
 import { Route as DemoI18nRouteImport } from './routes/demo.i18n'
 import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
 
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RssDotxmlRoute = RssDotxmlRouteImport.update({
+  id: '/rss.xml',
+  path: '/rss.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -30,16 +40,6 @@ const IndexRoute = IndexRouteImport.update({
 const BlogIndexRoute = BlogIndexRouteImport.update({
   id: '/blog/',
   path: '/blog/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SitemapXmlRoute = SitemapXmlRouteImport.update({
-  id: '/sitemap/xml',
-  path: '/sitemap/xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const RssXmlRoute = RssXmlRouteImport.update({
-  id: '/rss/xml',
-  path: '/rss/xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DemoI18nRoute = DemoI18nRouteImport.update({
@@ -56,29 +56,29 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/rss.xml': typeof RssDotxmlRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/demo/i18n': typeof DemoI18nRoute
-  '/rss/xml': typeof RssXmlRoute
-  '/sitemap/xml': typeof SitemapXmlRoute
   '/blog/': typeof BlogIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/rss.xml': typeof RssDotxmlRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/demo/i18n': typeof DemoI18nRoute
-  '/rss/xml': typeof RssXmlRoute
-  '/sitemap/xml': typeof SitemapXmlRoute
   '/blog': typeof BlogIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/rss.xml': typeof RssDotxmlRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/demo/i18n': typeof DemoI18nRoute
-  '/rss/xml': typeof RssXmlRoute
-  '/sitemap/xml': typeof SitemapXmlRoute
   '/blog/': typeof BlogIndexRoute
 }
 export interface FileRouteTypes {
@@ -86,43 +86,57 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/rss.xml'
+    | '/sitemap.xml'
     | '/blog/$slug'
     | '/demo/i18n'
-    | '/rss/xml'
-    | '/sitemap/xml'
     | '/blog/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
+    | '/rss.xml'
+    | '/sitemap.xml'
     | '/blog/$slug'
     | '/demo/i18n'
-    | '/rss/xml'
-    | '/sitemap/xml'
     | '/blog'
   id:
     | '__root__'
     | '/'
     | '/about'
+    | '/rss.xml'
+    | '/sitemap.xml'
     | '/blog/$slug'
     | '/demo/i18n'
-    | '/rss/xml'
-    | '/sitemap/xml'
     | '/blog/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  RssDotxmlRoute: typeof RssDotxmlRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   BlogSlugRoute: typeof BlogSlugRoute
   DemoI18nRoute: typeof DemoI18nRoute
-  RssXmlRoute: typeof RssXmlRoute
-  SitemapXmlRoute: typeof SitemapXmlRoute
   BlogIndexRoute: typeof BlogIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rss.xml': {
+      id: '/rss.xml'
+      path: '/rss.xml'
+      fullPath: '/rss.xml'
+      preLoaderRoute: typeof RssDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -142,20 +156,6 @@ declare module '@tanstack/react-router' {
       path: '/blog'
       fullPath: '/blog/'
       preLoaderRoute: typeof BlogIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sitemap/xml': {
-      id: '/sitemap/xml'
-      path: '/sitemap/xml'
-      fullPath: '/sitemap/xml'
-      preLoaderRoute: typeof SitemapXmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/rss/xml': {
-      id: '/rss/xml'
-      path: '/rss/xml'
-      fullPath: '/rss/xml'
-      preLoaderRoute: typeof RssXmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/demo/i18n': {
@@ -178,10 +178,10 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  RssDotxmlRoute: RssDotxmlRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   BlogSlugRoute: BlogSlugRoute,
   DemoI18nRoute: DemoI18nRoute,
-  RssXmlRoute: RssXmlRoute,
-  SitemapXmlRoute: SitemapXmlRoute,
   BlogIndexRoute: BlogIndexRoute,
 }
 export const routeTree = rootRouteImport

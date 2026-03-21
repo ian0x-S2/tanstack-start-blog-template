@@ -23,7 +23,7 @@ export default function Header() {
             Home
           </Link>
           <Link
-            to="/blog/"
+            to="/blog"
             className="nav-link"
             activeProps={{ className: 'nav-link is-active' }}
           >

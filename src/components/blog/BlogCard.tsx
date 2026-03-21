@@ -18,25 +18,25 @@ export function BlogCard({ post, priority = 'default' }: BlogCardProps) {
       <h2
         className={
           priority === 'featured'
-            ? 'heading-serif mt-3 text-2xl font-semibold leading-snug text-[var(--ink)] sm:text-3xl'
-            : 'heading-serif mt-3 text-xl font-semibold leading-snug text-[var(--ink)] sm:text-2xl'
+            ? 'heading-serif mt-3 text-2xl font-semibold leading-snug text-(--ink) sm:text-3xl'
+            : 'heading-serif mt-3 text-xl font-semibold leading-snug text-(--ink) sm:text-2xl'
         }
       >
         <Link
           to="/blog/$slug"
           params={{ slug: post.slug }}
-          className="no-underline hover:text-[var(--violet)] transition-colors"
+          className="no-underline hover:text-(--violet) transition-colors"
         >
           {post.title}
         </Link>
       </h2>
-      <p className="mt-2 mb-5 text-[14px] leading-6 text-[var(--ink-2)] line-clamp-3">
+      <p className="mt-2 mb-5 text-[14px] leading-6 text-(--ink-2) line-clamp-3">
         {post.description}
       </p>
       <Link
         to="/blog/$slug"
         params={{ slug: post.slug }}
-        className="inline-flex items-center gap-1 text-[13px] font-medium text-[var(--violet)] no-underline hover:opacity-80"
+        className="inline-flex items-center gap-1 text-[13px] font-medium text-(--violet) no-underline hover:opacity-80"
       >
         Read article
         <span aria-hidden="true">→</span>

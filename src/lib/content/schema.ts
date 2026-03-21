@@ -2,7 +2,7 @@ import { z } from 'zod'
 
 export const postFrontmatterSchema = z.object({
   title: z.string().min(1),
-  date: z.string().date(),
+  date: z.iso.date(),
   description: z.string().min(1),
   tags: z.array(z.string().min(1)).default([]),
   published: z.boolean().default(true),
