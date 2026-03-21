@@ -223,6 +223,79 @@ pre code {
   border-color: color-mix(in oklab, var(--lagoon-deep) 35%, var(--line));
 }
 
+.hero-panel {
+  border: 1px solid color-mix(in oklab, var(--lagoon) 18%, var(--line));
+  background:
+    linear-gradient(155deg, rgba(11, 22, 26, 0.9), rgba(18, 33, 38, 0.82)),
+    linear-gradient(180deg, var(--surface-strong), var(--surface));
+  box-shadow:
+    0 1px 0 rgba(216, 244, 239, 0.08) inset,
+    0 24px 48px rgba(0, 0, 0, 0.24),
+    0 8px 24px rgba(0, 0, 0, 0.16);
+}
+
+.blog-card {
+  border: 1px solid var(--line);
+  border-radius: 1.75rem;
+  padding: 1.5rem;
+  background: linear-gradient(160deg, rgba(14, 25, 29, 0.84), rgba(12, 20, 24, 0.74));
+  box-shadow:
+    0 1px 0 rgba(216, 244, 239, 0.05) inset,
+    0 20px 40px rgba(0, 0, 0, 0.18);
+}
+
+.blog-card-featured {
+  padding: 2rem;
+}
+
+.tag-pill,
+.tag-filter {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--chip-line);
+  border-radius: 999px;
+  padding: 0.45rem 0.85rem;
+  background: var(--chip-bg);
+  color: var(--sea-ink-soft);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+}
+
+.tag-filter.is-active,
+.tag-filter:hover {
+  color: var(--sea-ink);
+  border-color: color-mix(in oklab, var(--lagoon) 36%, var(--chip-line));
+  background: color-mix(in oklab, var(--chip-bg) 80%, var(--lagoon) 20%);
+}
+
+.editorial-prose {
+  color: var(--sea-ink-soft);
+}
+
+.editorial-prose :where(h1, h2, h3, h4) {
+  font-family: "Fraunces", Georgia, serif;
+  color: var(--sea-ink);
+  letter-spacing: -0.02em;
+}
+
+.editorial-prose :where(p, li) {
+  line-height: 1.9;
+}
+
+.editorial-prose :where(a) {
+  color: var(--lagoon-deep);
+}
+
+.editorial-prose :where(strong) {
+  color: var(--sea-ink);
+}
+
+.editorial-prose :where(code) {
+  color: var(--sea-ink);
+}
+
 button,
 .island-shell,
 a {

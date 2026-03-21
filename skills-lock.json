@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "react-best-practices": {
+      "source": "vercel-labs/vercel-plugin",
+      "sourceType": "github",
+      "computedHash": "4666ceb6576da8baefe2fea38b31a1c83cb185ee1bc429d3f6f6afa76b724c27"
+    }
+  }
+}

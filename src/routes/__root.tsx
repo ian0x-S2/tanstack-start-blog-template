@@ -13,6 +13,7 @@ import TanStackQueryProvider from '../integrations/tanstack-query/root-provider'
 import TanStackQueryDevtools from '../integrations/tanstack-query/devtools'
 
 import { getLocale } from '#/paraglide/runtime'
+import { siteMetadata } from '#/lib/site'
 
 import appCss from '../styles.css?url'
 
@@ -43,7 +44,23 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         content: 'width=device-width, initial-scale=1',
       },
       {
-        title: 'TanStack Start Starter',
+        title: `${siteMetadata.title} | ${siteMetadata.description}`,
+      },
+      {
+        name: 'description',
+        content: siteMetadata.description,
+      },
+      {
+        property: 'og:title',
+        content: siteMetadata.title,
+      },
+      {
+        property: 'og:description',
+        content: siteMetadata.description,
+      },
+      {
+        property: 'og:type',
+        content: 'website',
       },
     ],
     links: [
@@ -53,6 +70,32 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
       },
     ],
   }),
+  errorComponent: ({ error }) => (
+    <main className="page-wrap px-4 pb-20 pt-16">
+      <section className="hero-panel rounded-[2rem] px-6 py-10 sm:px-10 sm:py-14">
+        <p className="island-kicker mb-3">Something went wrong</p>
+        <h1 className="display-title text-4xl font-semibold text-(--sea-ink) sm:text-5xl">
+          The page could not be rendered.
+        </h1>
+        <p className="mt-4 max-w-2xl text-base leading-8 text-(--sea-ink-soft)">
+          {error instanceof Error ? error.message : 'An unexpected error occurred.'}
+        </p>
+      </section>
+    </main>
+  ),
+  notFoundComponent: () => (
+    <main className="page-wrap px-4 pb-20 pt-16">
+      <section className="hero-panel rounded-[2rem] px-6 py-10 sm:px-10 sm:py-14">
+        <p className="island-kicker mb-3">Not found</p>
+        <h1 className="display-title text-4xl font-semibold text-(--sea-ink) sm:text-5xl">
+          That page does not exist.
+        </h1>
+        <p className="mt-4 max-w-2xl text-base leading-8 text-(--sea-ink-soft)">
+          Check the URL or return to the homepage.
+        </p>
+      </section>
+    </main>
+  ),
   shellComponent: RootDocument,
 })
 
@@ -63,7 +106,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
         <HeadContent />
       </head>
-      <body className="font-sans antialiased [overflow-wrap:anywhere] selection:bg-[rgba(79,184,178,0.24)]">
+      <body className="wrap-anywhere font-sans antialiased selection:bg-[rgba(79,184,178,0.24)]">
         <TanStackQueryProvider>
           <Header />
           {children}
