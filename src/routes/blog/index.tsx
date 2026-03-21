@@ -54,36 +54,45 @@ function BlogIndexPage() {
   const { posts, tags, activeTag } = Route.useLoaderData()
 
   return (
-    <main className="page-wrap px-4 pb-16 pt-12 sm:pt-16">
-      <section className="hero-panel rise-in rounded-[2rem] px-6 py-10 sm:px-10 sm:py-14">
-        <p className="island-kicker mb-3">Archive</p>
-        <h1 className="display-title max-w-3xl text-4xl leading-tight font-semibold text-[var(--sea-ink)] sm:text-6xl">
-          Essays, notes, and practical fragments.
+    <main className="page-wrap px-4 pb-24 pt-14">
+      <section className="rise-in max-w-2xl">
+        <p className="section-label mb-5">Archive</p>
+        <h1 className="heading-serif text-4xl font-semibold leading-tight text-(--ink) sm:text-5xl">
+          All writing.
         </h1>
-        <p className="mt-4 max-w-2xl text-base leading-8 text-[var(--sea-ink-soft)] sm:text-lg">
-          A small journal for product thinking, frontend systems, and the craft
-          of making interfaces feel clear.
+        <p className="mt-3 text-base leading-7 text-(--ink-2)">
+          Essays, notes, and practical fragments on product thinking and
+          frontend craft.
         </p>
-        <div className="mt-8">
-          <TagFilter tags={tags} activeTag={activeTag} />
-        </div>
+        {tags.length > 0 && (
+          <div className="mt-6">
+            <TagFilter tags={tags} activeTag={activeTag} />
+          </div>
+        )}
       </section>
 
-      <section className="mt-8 grid gap-5">
+      <div className="my-10 h-px bg-(--line)" />
+
+      <section className="space-y-3">
         {posts.length ? (
           posts.map((post, index) => (
-            <div key={post.slug} className="rise-in" style={{ animationDelay: `${index * 70}ms` }}>
+            <div
+              key={post.slug}
+              className="rise-in"
+              style={{ animationDelay: `${index * 55}ms` }}
+            >
               <BlogCard post={post} />
             </div>
           ))
         ) : (
-          <article className="blog-card">
-            <p className="island-kicker mb-3">No matches</p>
-            <p className="m-0 max-w-xl text-base leading-7 text-[var(--sea-ink-soft)]">
-              There are no posts for this tag yet. Try another filter or return
-              to the full archive.
+          <div className="rounded-xl border border-(--line) bg-(--surface) px-6 py-10 text-center">
+            <p className="text-sm text-(--ink-2)">
+              No posts match this filter.{' '}
+              <a href="/blog" className="text-(--violet)">
+                Clear filter
+              </a>
             </p>
-          </article>
+          </div>
         )}
       </section>
     </main>

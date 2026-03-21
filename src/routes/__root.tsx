@@ -71,29 +71,29 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
     ],
   }),
   errorComponent: ({ error }) => (
-    <main className="page-wrap px-4 pb-20 pt-16">
-      <section className="hero-panel rounded-[2rem] px-6 py-10 sm:px-10 sm:py-14">
-        <p className="island-kicker mb-3">Something went wrong</p>
-        <h1 className="display-title text-4xl font-semibold text-(--sea-ink) sm:text-5xl">
-          The page could not be rendered.
-        </h1>
-        <p className="mt-4 max-w-2xl text-base leading-8 text-(--sea-ink-soft)">
-          {error instanceof Error ? error.message : 'An unexpected error occurred.'}
-        </p>
-      </section>
+    <main className="page-wrap px-4 pb-24 pt-14">
+      <p className="section-label mb-4">Error</p>
+      <h1 className="heading-serif text-3xl font-semibold text-(--ink)">
+        Something went wrong.
+      </h1>
+      <p className="mt-3 max-w-lg text-sm leading-6 text-(--ink-2)">
+        {error instanceof Error ? error.message : 'An unexpected error occurred.'}
+      </p>
     </main>
   ),
   notFoundComponent: () => (
-    <main className="page-wrap px-4 pb-20 pt-16">
-      <section className="hero-panel rounded-[2rem] px-6 py-10 sm:px-10 sm:py-14">
-        <p className="island-kicker mb-3">Not found</p>
-        <h1 className="display-title text-4xl font-semibold text-(--sea-ink) sm:text-5xl">
-          That page does not exist.
-        </h1>
-        <p className="mt-4 max-w-2xl text-base leading-8 text-(--sea-ink-soft)">
-          Check the URL or return to the homepage.
-        </p>
-      </section>
+    <main className="page-wrap px-4 pb-24 pt-14">
+      <p className="section-label mb-4">404</p>
+      <h1 className="heading-serif text-3xl font-semibold text-(--ink)">
+        Page not found.
+      </h1>
+      <p className="mt-3 max-w-lg text-sm text-(--ink-2)">
+        Check the URL or{' '}
+        <a href="/" className="text-(--violet) hover:underline">
+          return home
+        </a>
+        .
+      </p>
     </main>
   ),
   shellComponent: RootDocument,
@@ -106,7 +106,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
         <HeadContent />
       </head>
-      <body className="wrap-anywhere font-sans antialiased selection:bg-[rgba(79,184,178,0.24)]">
+      <body className="wrap-anywhere font-sans antialiased selection:bg-(--violet-subtle) selection:text-(--violet)">
         <TanStackQueryProvider>
           <Header />
           {children}

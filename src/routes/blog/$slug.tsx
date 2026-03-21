@@ -44,47 +44,59 @@ function BlogPostPage() {
   const { post } = Route.useLoaderData()
 
   return (
-    <main className="page-wrap px-4 pb-20 pt-12 sm:pt-16">
-      <article className="hero-panel rise-in rounded-[2rem] px-6 py-10 sm:px-10 sm:py-14">
-        <p className="island-kicker mb-3">Journal entry</p>
-        <h1 className="display-title max-w-4xl text-4xl leading-[1.05] font-semibold text-(--sea-ink) sm:text-6xl">
+    <main className="page-wrap px-4 pb-24 pt-12">
+      {/* Back link */}
+      <div className="mb-10">
+        <a
+          href="/blog"
+          className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[var(--ink-3)] hover:text-[var(--ink-2)]"
+        >
+          <span aria-hidden="true">←</span>
+          All posts
+        </a>
+      </div>
+
+      {/* Article header */}
+      <header className="rise-in max-w-[720px]">
+        <PostMeta
+          date={post.date}
+          readingTimeMinutes={post.readingTimeMinutes}
+          tags={post.tags}
+        />
+        <h1 className="heading-serif mt-4 text-4xl font-semibold leading-[1.1] text-[var(--ink)] sm:text-5xl">
           {post.title}
         </h1>
-        <p className="mt-5 max-w-2xl text-base leading-8 text-(--sea-ink-soft) sm:text-lg">
+        <p className="mt-4 text-base leading-7 text-[var(--ink-2)] sm:text-lg">
           {post.description}
         </p>
-        <div className="mt-8">
-          <PostMeta
-            date={post.date}
-            readingTimeMinutes={post.readingTimeMinutes}
-            tags={post.tags}
-          />
-        </div>
-      </article>
+      </header>
 
-      <section className="island-shell mt-8 rounded-[2rem] px-6 py-8 sm:px-10 sm:py-10">
-        <div
-          className="editorial-prose prose prose-invert max-w-none"
-          dangerouslySetInnerHTML={{ __html: post.html }}
-        />
-      </section>
+      <div className="my-10 h-px max-w-[720px] bg-[var(--line)]" />
+
+      {/* Content */}
+      <article
+        className="editorial-prose prose max-w-[720px] prose-neutral dark:prose-invert rise-in"
+        style={{ animationDelay: '100ms' }}
+        dangerouslySetInnerHTML={{ __html: post.html }}
+      />
     </main>
   )
 }
 
 function PostNotFound() {
   return (
-    <main className="page-wrap px-4 pb-20 pt-16">
-      <section className="hero-panel rounded-[2rem] px-6 py-10 sm:px-10 sm:py-14">
-        <p className="island-kicker mb-3">Missing post</p>
-        <h1 className="display-title text-4xl font-semibold text-(--sea-ink) sm:text-5xl">
-          That article does not exist.
-        </h1>
-        <p className="mt-4 max-w-2xl text-base leading-8 text-(--sea-ink-soft)">
-          The slug may be wrong, or the post may have been removed from the
-          bundled content collection.
-        </p>
-      </section>
+    <main className="page-wrap px-4 pb-24 pt-14">
+      <p className="section-label mb-4">Not found</p>
+      <h1 className="heading-serif text-3xl font-semibold text-[var(--ink)]">
+        That article doesn’t exist.
+      </h1>
+      <p className="mt-3 text-sm text-[var(--ink-2)]">
+        The slug may be wrong, or the post was removed.{' '}
+        <a href="/blog" className="text-[var(--violet)] hover:underline">
+          Browse all posts
+        </a>
+        .
+      </p>
     </main>
   )
 }

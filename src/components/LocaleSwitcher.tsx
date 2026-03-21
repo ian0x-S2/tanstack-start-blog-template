@@ -8,39 +8,22 @@ export default function ParaglideLocaleSwitcher() {
   const currentLocale = getLocale()
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        gap: '0.5rem',
-        alignItems: 'center',
-        color: 'inherit',
-      }}
-      aria-label={m.language_label()}
-    >
-      <span style={{ opacity: 0.85 }}>
-        {m.current_locale({ locale: currentLocale })}
-      </span>
-      <div style={{ display: 'flex', gap: '0.25rem' }}>
-        {locales.map((locale) => (
-          <button
-            key={locale}
-            onClick={() => setLocale(locale)}
-            aria-pressed={locale === currentLocale}
-            style={{
-              cursor: 'pointer',
-              padding: '0.35rem 0.75rem',
-              borderRadius: '999px',
-              border: '1px solid #d1d5db',
-              background: locale === currentLocale ? '#0f172a' : 'transparent',
-              color: locale === currentLocale ? '#f8fafc' : 'inherit',
-              fontWeight: locale === currentLocale ? 700 : 500,
-              letterSpacing: '0.01em',
-            }}
-          >
-            {locale.toUpperCase()}
-          </button>
-        ))}
-      </div>
+    <div className="flex items-center gap-0.5" aria-label={m.language_label()}>
+      {locales.map((locale) => (
+        <button
+          key={locale}
+          type="button"
+          onClick={() => setLocale(locale)}
+          aria-pressed={locale === currentLocale}
+          className={
+            locale === currentLocale
+              ? 'flex h-7 items-center rounded-md border border-[var(--line-strong)] bg-[var(--surface-hover)] px-2.5 text-[12px] font-semibold text-[var(--ink)] cursor-pointer'
+              : 'flex h-7 items-center rounded-md border border-transparent px-2.5 text-[12px] font-medium text-[var(--ink-3)] hover:bg-[var(--surface)] hover:text-[var(--ink-2)] cursor-pointer'
+          }
+        >
+          {locale.toUpperCase()}
+        </button>
+      ))}
     </div>
   )
 }

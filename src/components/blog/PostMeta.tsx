@@ -13,21 +13,20 @@ export function PostMeta({
   tags,
 }: PostMetaProps) {
   return (
-    <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-[var(--sea-ink-soft)]">
-      <span>{formatLongDate(date)}</span>
-      <span aria-hidden="true" className="text-[var(--line-strong)]">
-        / 
-      </span>
+    <div className="flex flex-wrap items-center gap-x-2 gap-y-1.5 text-[13px] text-[var(--ink-3)]">
+      <time dateTime={date}>{formatLongDate(date)}</time>
+      <span aria-hidden="true">·</span>
       <span>{readingTimeMinutes} min read</span>
-      {tags.length ? (
-        <div className="flex flex-wrap gap-2">
+      {tags.length > 0 && (
+        <>
+          <span aria-hidden="true">·</span>
           {tags.map((tag) => (
             <span key={tag} className="tag-pill">
               {tag}
             </span>
           ))}
-        </div>
-      ) : null}
+        </>
+      )}
     </div>
   )
 }
