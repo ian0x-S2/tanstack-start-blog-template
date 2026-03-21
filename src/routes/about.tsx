@@ -2,6 +2,9 @@ import { createFileRoute } from '@tanstack/react-router'
 import { siteMetadata } from '#/lib/site'
 
 export const Route = createFileRoute('/about')({
+  headers: () => ({
+    'Cache-Control': 'public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800',
+  }),
   head: () => ({
     meta: [
       { title: `About | ${siteMetadata.shortTitle}` },

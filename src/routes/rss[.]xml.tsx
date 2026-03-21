@@ -43,6 +43,7 @@ export const Route = createFileRoute('/rss.xml')({
         return new Response(xml, {
           headers: {
             'content-type': 'application/rss+xml; charset=utf-8',
+            'Cache-Control': 'public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400',
           },
         })
       },

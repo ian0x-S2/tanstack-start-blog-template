@@ -7,6 +7,11 @@ export const Route = createFileRoute('/')({
   loader: async () => ({
     featuredPosts: await getFeaturedPosts(3),
   }),
+  headers: () => ({
+    'Cache-Control': 'public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400',
+  }),
+  staleTime: 5 * 60_000,
+  gcTime: 30 * 60_000,
   head: () => ({
     meta: [
       { title: `${siteMetadata.title} | Minimal blog template` },

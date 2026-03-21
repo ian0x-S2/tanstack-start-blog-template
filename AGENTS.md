@@ -320,12 +320,12 @@ Always use these tokens. Never hardcode colors.
 
 ```tsx
 // Primary CTA
-<a className="rounded-lg bg-[var(--violet)] px-4 py-2 text-sm font-medium text-white">
+<a className="rounded-lg bg-(--violet) px-4 py-2 text-sm font-medium text-white">
   Label
 </a>
 
 // Secondary / ghost
-<a className="rounded-lg border border-[var(--line)] px-4 py-2 text-sm font-medium text-[var(--ink-2)] hover:bg-[var(--surface)]">
+<a className="rounded-lg border border-(--line) px-4 py-2 text-sm font-medium text-(--ink-2) hover:bg-(--surface)">
   Label
 </a>
 ```

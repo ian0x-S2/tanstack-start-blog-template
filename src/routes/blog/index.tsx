@@ -28,6 +28,11 @@ export const Route = createFileRoute('/blog/')({
       tags,
     }
   },
+  headers: () => ({
+    'Cache-Control': 'public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400',
+  }),
+  staleTime: 5 * 60_000,
+  gcTime: 30 * 60_000,
   head: ({ loaderData }) => {
     const title = loaderData?.activeTag
       ? `${loaderData.activeTag} posts | ${siteMetadata.shortTitle}`
