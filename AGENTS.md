@@ -266,6 +266,123 @@ Prefer:
 
 ---
 
+## UI/UX Guidelines
+
+### Design Language
+
+Inspired by [Linear](https://linear.app) — minimal, neutral, precise. No decorative gradients, no heavy shadows, no pill-shaped buttons everywhere.
+
+### Principles
+
+- **Flat over glossy** — surfaces use subtle fills (`var(--surface)`), not gradients or glow effects
+- **Less radius** — use `rounded-md` (6px) for controls, `rounded-xl` (12px) for cards. Never `rounded-full` on interactive elements unless it is a pure icon button
+- **Restrained color** — only one accent color (`--violet`). Use it for links, active states, and primary CTAs only
+- **No decorative animations** — entry animations are subtle (`rise-in`: 8px Y, 450ms). No parallax, no blur-in, no bounce
+- **Typography hierarchy** — display headings use Fraunces serif (`.heading-serif`); all UI text uses Inter Variable
+
+### Design Tokens (CSS variables)
+
+Always use these tokens. Never hardcode colors.
+
+| Token | Purpose |
+|---|---|
+| `--bg` | Page background |
+| `--bg-subtle` | Alternate section background |
+| `--surface` | Card / input fill |
+| `--surface-hover` | Hover state fill |
+| `--line` | Default border / divider |
+| `--line-strong` | Emphasized border |
+| `--ink` | Primary text |
+| `--ink-2` | Secondary text |
+| `--ink-3` | Tertiary / placeholder text |
+| `--violet` | Accent — links, active, primary CTA |
+| `--violet-subtle` | Accent background (tags, badges) |
+| `--violet-border` | Accent border |
+| `--header-bg` | Navbar background (with opacity) |
+
+### Dark / Light Mode
+
+- System-aware by default (`auto`), user-overridable via ThemeToggle
+- Dark background: `#0f0f10` — near-black, not pure black
+- Light background: `#ffffff` with `#fafafa` for subtle sections
+- Tokens flip automatically; **never write light/dark conditional classes** in components
+
+### Typography
+
+- **Display headings**: `heading-serif` class → Fraunces, `letter-spacing: -0.02em`
+- **Body**: Inter Variable, `15px`, `line-height: 1.65`
+- **Section labels**: `section-label` class → 11px, uppercase, `--ink-3`
+- **Prose content**: `editorial-prose` class wrapping rendered Markdown HTML
+
+### Components
+
+#### Buttons
+
+```tsx
+// Primary CTA
+<a className="rounded-lg bg-[var(--violet)] px-4 py-2 text-sm font-medium text-white">
+  Label
+</a>
+
+// Secondary / ghost
+<a className="rounded-lg border border-[var(--line)] px-4 py-2 text-sm font-medium text-[var(--ink-2)] hover:bg-[var(--surface)]">
+  Label
+</a>
+```
+
+#### Cards
+
+```tsx
+// Use .blog-card CSS class — do not inline card styles
+<article className="blog-card">…</article>
+<article className="blog-card blog-card-featured">…</article>
+```
+
+#### Tags / Badges
+
+```tsx
+// .tag-pill — small inline badge (violet tint)
+<span className="tag-pill">{tag}</span>
+
+// .tag-filter — clickable filter chip
+<a className={active ? 'tag-filter is-active' : 'tag-filter'}>All posts</a>
+```
+
+#### Navigation links
+
+```tsx
+// Use .nav-link CSS class; add is-active for current route
+<Link className="nav-link" activeProps={{ className: 'nav-link is-active' }}>
+  Page
+</Link>
+```
+
+### Layout
+
+- Max content width: `960px` via `.page-wrap`
+- Page padding: `px-4 pb-24 pt-14`
+- Section separator: `<div className="my-10 h-px bg-[var(--line)]" />`
+- Prose max-width: `max-w-[720px]`
+
+### Spacing & Radius Reference
+
+| Use case | Radius |
+|---|---|
+| Control (button, input, locale chip) | `rounded-md` = 6px |
+| Card / panel | `rounded-xl` = 12px |
+| Icon-only button | `rounded-md` |
+| Tag pill | `rounded` = 4px |
+
+### What to Avoid
+
+- ❌ `rounded-full` on text buttons
+- ❌ Hardcoded hex colors in components — use tokens
+- ❌ `box-shadow` with colored glows
+- ❌ Background gradients on surfaces
+- ❌ Old teal/green token names (`--sea-ink`, `--lagoon`, `--chip-bg`, etc.) — these are removed
+
+---
+
 ## Extensibility Roadmap
 
 - [ ] Comments (e.g. Giscus)
