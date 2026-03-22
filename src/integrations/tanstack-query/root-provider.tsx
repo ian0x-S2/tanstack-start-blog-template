@@ -8,6 +8,12 @@ let context:
   | undefined
 
 export function getContext() {
+  // Always create a fresh QueryClient on the server to avoid
+  // cross-request data leakage in Cloudflare Workers isolates.
+  if (typeof document === 'undefined') {
+    return { queryClient: new QueryClient() }
+  }
+
   if (context) {
     return context
   }
