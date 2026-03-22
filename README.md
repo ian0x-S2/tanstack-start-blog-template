@@ -7,7 +7,8 @@ Minimal blog built with TanStack Start, React 19, TypeScript, and Markdown.
 - Markdown posts in `content/posts`
 - Routes powered by TanStack Router
 - Styling with Tailwind CSS v4
-- Ready for Cloudflare Workers deployment
+- Ready for static deployment on Vercel
+- Optional Cloudflare Workers support when `@cloudflare/vite-plugin` is installed
 
 ## Requirements
 
