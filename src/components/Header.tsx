@@ -1,6 +1,5 @@
 import { Link } from '@tanstack/react-router'
 import { siteMetadata } from '#/lib/site'
-import ParaglideLocaleSwitcher from './LocaleSwitcher.tsx'
 import ThemeToggle from './ThemeToggle'
 
 export default function Header() {
@@ -42,7 +41,6 @@ export default function Header() {
         </nav>
 
         <div className="ml-2 flex items-center gap-1">
-          <ParaglideLocaleSwitcher />
           <ThemeToggle />
         </div>
       </div>

@@ -6,7 +6,6 @@ Minimal blog built with TanStack Start, React 19, TypeScript, and Markdown.
 
 - Markdown posts in `content/posts`
 - Routes powered by TanStack Router
-- i18n with Paraglide
 - Styling with Tailwind CSS v4
 - Ready for Cloudflare Workers deployment
 
@@ -55,7 +54,6 @@ Files in `content/posts` become routes at `/blog/:slug`.
 - `src/routes` - application routes
 - `src/components` - UI and blog components
 - `src/lib/content` - post parsing and rendering
-- `src/paraglide` - messages and i18n runtime
 
 ## License
 
